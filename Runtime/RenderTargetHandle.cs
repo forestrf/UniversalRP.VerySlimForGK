@@ -3,12 +3,12 @@ using UnityEngine.Scripting.APIUpdating;
 namespace UnityEngine.Rendering.Universal
 {
     // RenderTargetHandle can be thought of as a kind of ShaderProperty string hash
-    [MovedFrom("UnityEngine.Rendering.LWRP")] public struct RenderTargetHandle
+    public struct RenderTargetHandle
     {
         public int id { set; get; }
         private RenderTargetIdentifier rtid { set; get; }
 
-        public static readonly RenderTargetHandle CameraTarget = new RenderTargetHandle {id = -1 };
+        public static readonly RenderTargetHandle CameraTarget = new RenderTargetHandle { id = -1 };
 
         public RenderTargetHandle(RenderTargetIdentifier renderTargetIdentifier)
         {
@@ -16,8 +16,13 @@ namespace UnityEngine.Rendering.Universal
             rtid = renderTargetIdentifier;
         }
 
-        internal static RenderTargetHandle GetCameraTarget()
+        internal static RenderTargetHandle GetCameraTarget(XRPass xr)
         {
+#if ENABLE_VR && ENABLE_XR_MODULE
+            if (xr.enabled)
+                return new RenderTargetHandle(xr.renderTarget);
+#endif
+
             return CameraTarget;
         }
 
@@ -44,7 +49,7 @@ namespace UnityEngine.Rendering.Universal
             {
                 return rtid;
             }
-            return new RenderTargetIdentifier(id);
+            return new RenderTargetIdentifier(id, 0, CubemapFace.Unknown, -1);
         }
 
         public bool HasInternalRenderTargetId()
@@ -70,12 +75,12 @@ namespace UnityEngine.Rendering.Universal
             return id;
         }
 
-        public static bool operator==(RenderTargetHandle c1, RenderTargetHandle c2)
+        public static bool operator ==(RenderTargetHandle c1, RenderTargetHandle c2)
         {
             return c1.Equals(c2);
         }
 
-        public static bool operator!=(RenderTargetHandle c1, RenderTargetHandle c2)
+        public static bool operator !=(RenderTargetHandle c1, RenderTargetHandle c2)
         {
             return !c1.Equals(c2);
         }
