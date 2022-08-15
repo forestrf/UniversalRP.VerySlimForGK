@@ -6,7 +6,7 @@
   "displayName": "Universal RP",
   "dependencies": {
     "com.unity.mathematics": "1.2.1",
-    "com.unity.render-pipelines.core": "12.1.7",
+    "com.unity.render-pipelines.core": "12.1.7"
   },
   "keywords": [
     "graphics",
