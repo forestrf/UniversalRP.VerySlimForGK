@@ -107,7 +107,6 @@ half4 UnlitPassFragment(Varyings input) : SV_Target
 
     InputData inputData;
     InitializeInputData(input, inputData);
-    SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
 
 #ifdef _DBUFFER
     ApplyDecalToBaseColor(input.positionCS, color);

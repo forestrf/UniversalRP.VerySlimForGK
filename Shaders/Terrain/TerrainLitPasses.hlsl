@@ -376,7 +376,6 @@ half4 SplatmapFragment(Varyings IN) : SV_TARGET
 
     InputData inputData;
     InitializeInputData(IN, normalTS, inputData);
-    SETUP_DEBUG_TEXTURE_DATA(inputData, IN.uvMainAndLM.xy, _BaseMap);
 
 #if defined(_DBUFFER)
     half3 specular = half3(0.0h, 0.0h, 0.0h);

@@ -2,7 +2,6 @@
 #define UNIVERSAL_LIGHTING_INCLUDED
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/BRDF.hlsl"
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Debug/Debugging3D.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GlobalIllumination.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/RealtimeLights.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/AmbientOcclusion.hlsl"
@@ -143,37 +142,7 @@ half3 CalculateLightingColor(LightingData lightingData, half3 albedo)
 {
     half3 lightingColor = 0;
 
-    if (IsOnlyAOLightingFeatureEnabled())
-    {
-        return lightingData.giColor; // Contains white + AO
-    }
-
-    if (IsLightingFeatureEnabled(DEBUGLIGHTINGFEATUREFLAGS_GLOBAL_ILLUMINATION))
-    {
-        lightingColor += lightingData.giColor;
-    }
-
-    if (IsLightingFeatureEnabled(DEBUGLIGHTINGFEATUREFLAGS_MAIN_LIGHT))
-    {
-        lightingColor += lightingData.mainLightColor;
-    }
-
-    if (IsLightingFeatureEnabled(DEBUGLIGHTINGFEATUREFLAGS_ADDITIONAL_LIGHTS))
-    {
-        lightingColor += lightingData.additionalLightsColor;
-    }
-
-    if (IsLightingFeatureEnabled(DEBUGLIGHTINGFEATUREFLAGS_VERTEX_LIGHTING))
-    {
-        lightingColor += lightingData.vertexLightingColor;
-    }
-
     lightingColor *= albedo;
-
-    if (IsLightingFeatureEnabled(DEBUGLIGHTINGFEATUREFLAGS_EMISSION))
-    {
-        lightingColor += lightingData.emissionColor;
-    }
 
     return lightingColor;
 }
@@ -252,15 +221,6 @@ half4 UniversalFragmentPBR(InputData inputData, SurfaceData surfaceData)
 
     // NOTE: can modify "surfaceData"...
     InitializeBRDFData(surfaceData, brdfData);
-
-    #if defined(DEBUG_DISPLAY)
-    half4 debugColor;
-
-    if (CanDebugOverrideOutputColor(inputData, surfaceData, brdfData, debugColor))
-    {
-        return debugColor;
-    }
-    #endif
 
     // Clear-coat calculation...
     BRDFData brdfDataClearCoat = CreateClearCoatBRDFData(surfaceData, brdfData);
@@ -347,15 +307,6 @@ half4 UniversalFragmentPBR(InputData inputData, half3 albedo, half metallic, hal
 ////////////////////////////////////////////////////////////////////////////////
 half4 UniversalFragmentBlinnPhong(InputData inputData, SurfaceData surfaceData)
 {
-    #if defined(DEBUG_DISPLAY)
-    half4 debugColor;
-
-    if (CanDebugOverrideOutputColor(inputData, surfaceData, debugColor))
-    {
-        return debugColor;
-    }
-    #endif
-
     uint meshRenderingLayers = GetMeshRenderingLightLayer();
     half4 shadowMask = CalculateShadowMask(inputData);
     AmbientOcclusionFactor aoFactor = CreateAmbientOcclusionFactor(inputData, surfaceData);
@@ -429,22 +380,8 @@ half4 UniversalFragmentBakedLit(InputData inputData, SurfaceData surfaceData)
     surfaceData.albedo *= surfaceData.alpha;
     #endif
 
-    #if defined(DEBUG_DISPLAY)
-    half4 debugColor;
-
-    if (CanDebugOverrideOutputColor(inputData, surfaceData, debugColor))
-    {
-        return debugColor;
-    }
-    #endif
-
     AmbientOcclusionFactor aoFactor = CreateAmbientOcclusionFactor(inputData, surfaceData);
     LightingData lightingData = CreateLightingData(inputData, surfaceData);
-
-    if (IsLightingFeatureEnabled(DEBUGLIGHTINGFEATUREFLAGS_AMBIENT_OCCLUSION))
-    {
-        lightingData.giColor *= aoFactor.indirectAmbientOcclusion;
-    }
 
     return CalculateFinalColor(lightingData, surfaceData.albedo, surfaceData.alpha, inputData.fogCoord);
 }

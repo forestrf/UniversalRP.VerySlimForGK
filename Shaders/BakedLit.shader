@@ -61,7 +61,6 @@ Shader "Universal Render Pipeline/Baked Lit"
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma multi_compile _ DEBUG_DISPLAY
 
             //--------------------------------------
             // GPU Instancing
@@ -260,7 +259,6 @@ Shader "Universal Render Pipeline/Baked Lit"
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma multi_compile _ DEBUG_DISPLAY
 
             //--------------------------------------
             // GPU Instancing

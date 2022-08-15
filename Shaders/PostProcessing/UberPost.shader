@@ -11,13 +11,11 @@ Shader "Hidden/Universal Render Pipeline/UberPost"
         #pragma multi_compile_local_fragment _ _GAMMA_20 _LINEAR_TO_SRGB_CONVERSION
         #pragma multi_compile_local_fragment _ _USE_FAST_SRGB_LINEAR_CONVERSION
         #pragma multi_compile _ _USE_DRAW_PROCEDURAL
-        #pragma multi_compile_fragment _ DEBUG_DISPLAY
 
         #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
         #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Filtering.hlsl"
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
         #include "Packages/com.unity.render-pipelines.universal/Shaders/PostProcessing/Common.hlsl"
-        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Debug/DebuggingFullscreen.hlsl"
 
         // Hardcoded dependencies to reduce the number of variants
         #if _BLOOM_LQ || _BLOOM_HQ || _BLOOM_LQ_DIRT || _BLOOM_HQ_DIRT

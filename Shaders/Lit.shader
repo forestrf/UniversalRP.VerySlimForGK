@@ -133,7 +133,6 @@ Shader "Universal Render Pipeline/Lit"
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma multi_compile_fragment _ DEBUG_DISPLAY
 
             //--------------------------------------
             // GPU Instancing
@@ -442,7 +441,6 @@ Shader "Universal Render Pipeline/Lit"
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma multi_compile_fragment _ DEBUG_DISPLAY
 
             #pragma vertex LitPassVertex
             #pragma fragment LitPassFragment

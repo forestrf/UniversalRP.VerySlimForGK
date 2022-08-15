@@ -118,7 +118,6 @@ half4 ParticlesLitFragment(VaryingsParticle input) : SV_Target
 
     InputData inputData;
     InitializeInputData(input, surfaceData.normalTS, inputData);
-    SETUP_DEBUG_TEXTURE_DATA(inputData, input.texcoord, _BaseMap);
 
     half4 color = UniversalFragmentPBR(inputData, surfaceData);
     color.rgb = MixFog(color.rgb, inputData.fogCoord);

@@ -53,7 +53,6 @@ Shader "Universal Render Pipeline/Unlit"
             #pragma multi_compile _ DOTS_INSTANCING_ON
             #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
             #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
-            #pragma multi_compile _ DEBUG_DISPLAY
 
             #pragma vertex UnlitPassVertex
             #pragma fragment UnlitPassFragment
@@ -172,7 +171,6 @@ Shader "Universal Render Pipeline/Unlit"
             #pragma multi_compile_fog
             #pragma multi_compile_instancing
             #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
-            #pragma multi_compile _ DEBUG_DISPLAY
 
             #pragma vertex UnlitPassVertex
             #pragma fragment UnlitPassFragment

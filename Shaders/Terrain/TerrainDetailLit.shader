@@ -34,7 +34,6 @@ Shader "Hidden/TerrainEngine/Details/UniversalPipeline/Vertexlit"
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma multi_compile _ DEBUG_DISPLAY
 
             #pragma vertex TerrainLitVertex
             #pragma fragment TerrainLitForwardFragment

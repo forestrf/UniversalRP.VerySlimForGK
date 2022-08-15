@@ -58,7 +58,6 @@ Shader "Hidden/Universal Render Pipeline/Terrain/Lit (Base Pass)"
             #pragma multi_compile_fog
             #pragma multi_compile_instancing
             #pragma instancing_options norenderinglayer assumeuniformscaling nomatrices nolightprobe nolightmap
-            #pragma multi_compile_fragment _ DEBUG_DISPLAY
 
             #pragma vertex SplatmapVert
             #pragma fragment SplatmapFragment

@@ -344,11 +344,6 @@ half3 GlobalIllumination(BRDFData brdfData, BRDFData brdfDataClearCoat, float cl
 
     half3 color = EnvironmentBRDF(brdfData, indirectDiffuse, indirectSpecular, fresnelTerm);
 
-    if (IsOnlyAOLightingFeatureEnabled())
-    {
-        color = half3(1,1,1); // "Base white" for AO debug lighting mode
-    }
-
 #if defined(_CLEARCOAT) || defined(_CLEARCOATMAP)
     half3 coatIndirectSpecular = GlossyEnvironmentReflection(reflectVector, positionWS, brdfDataClearCoat.perceptualRoughness, 1.0h);
     // TODO: "grazing term" causes problems on full roughness
@@ -421,11 +416,6 @@ void MixRealtimeAndBakedGI(inout Light light, half3 normalWS, inout half3 bakedG
 
 void MixRealtimeAndBakedGI(inout Light light, half3 normalWS, inout half3 bakedGI, AmbientOcclusionFactor aoFactor)
 {
-    if (IsLightingFeatureEnabled(DEBUGLIGHTINGFEATUREFLAGS_AMBIENT_OCCLUSION))
-    {
-        bakedGI *= aoFactor.indirectAmbientOcclusion;
-    }
-
     MixRealtimeAndBakedGI(light, normalWS, bakedGI);
 }
 

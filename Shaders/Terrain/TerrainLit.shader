@@ -84,7 +84,6 @@ Shader "Universal Render Pipeline/Terrain/Lit"
             #pragma multi_compile _ LIGHTMAP_ON
             #pragma multi_compile _ DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
-            #pragma multi_compile_fragment _ DEBUG_DISPLAY
             #pragma multi_compile_instancing
             #pragma instancing_options norenderinglayer assumeuniformscaling nomatrices nolightprobe nolightmap
 

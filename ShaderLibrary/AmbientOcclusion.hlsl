@@ -34,21 +34,6 @@ AmbientOcclusionFactor GetScreenSpaceAmbientOcclusion(float2 normalizedScreenSpa
     aoFactor.indirectAmbientOcclusion = 1;
     #endif
 
-    #if defined(DEBUG_DISPLAY)
-    switch(_DebugLightingMode)
-    {
-        case DEBUGLIGHTINGMODE_LIGHTING_WITHOUT_NORMAL_MAPS:
-            aoFactor.directAmbientOcclusion = 0.5;
-            aoFactor.indirectAmbientOcclusion = 0.5;
-            break;
-
-        case DEBUGLIGHTINGMODE_LIGHTING_WITH_NORMAL_MAPS:
-            aoFactor.directAmbientOcclusion *= 0.5;
-            aoFactor.indirectAmbientOcclusion *= 0.5;
-            break;
-    }
-    #endif
-
     return aoFactor;
 }
 
