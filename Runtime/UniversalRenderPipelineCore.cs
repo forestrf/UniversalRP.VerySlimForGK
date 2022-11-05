@@ -326,4 +326,7 @@ namespace UnityEngine.Rendering.Universal
             return desc;
         }
     }
+    
+    // Wanted by Entities, so here, take it
+    public class UniversalAdditionalLightData { }
 }
