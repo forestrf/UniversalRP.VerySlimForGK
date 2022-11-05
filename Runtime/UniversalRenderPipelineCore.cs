@@ -114,4 +114,7 @@ namespace UnityEngine.Rendering.Universal
         // XR
         public static readonly string UseDrawProcedural = "_USE_DRAW_PROCEDURAL";
     }
+    
+    // Wanted by Entities, so here, take it
+    public class UniversalAdditionalLightData { }
 }
