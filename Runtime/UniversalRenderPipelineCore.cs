@@ -116,5 +116,5 @@ namespace UnityEngine.Rendering.Universal
     }
     
     // Wanted by Entities, so here, take it
-    public class UniversalAdditionalLightData { }
+    public class UniversalAdditionalLightData : Component { }
 }
